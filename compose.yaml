@@ -1,0 +1,36 @@
+
+version: '3.9'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    env_file:
+      - .env
+    depends_on:
+      - nextjs
+      - express
+    deploy:
+      replicas: 1
+
+
+  nextjs:
+    build: ./user-crud
+    expose:
+      - "3000:3000"
+    deploy:
+      replicas: 3
+    environment:
+      - EXPRESS_API_URL=http://express:4000
+
+  express:
+    build: ./express
+    env_file: ".env"
+    expose:
+      - "4000"
+    deploy:
+      replicas: 3
+    extra_hosts:
+      - host.docker.internal:host-gateway
