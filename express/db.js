@@ -5,7 +5,7 @@ const connectDB = async () => {
       let url='';
       const host ='host.docker.internal';
       const user = process.env.MONGO_USERNAME ? process.env.MONGO_USERNAME :null
-      const pass = process.env.MONGO_USERNAME ? process.env.MONGO_USERNAME :null
+      const pass = process.env.MONGO_PASS ? process.env.MONGO_PASS :null
       const dbname = process.env.MONGO_DB ? process.env.MONGO_DB : 'test'
       if(user && pass){
         url =`mongodb://${user}@${pass}:${host}:27017/${dbname}`
@@ -16,6 +16,7 @@ const connectDB = async () => {
       const conn = await mongoose.connect(url);
       console.log(`MongoDB Connected: ${host}`);
     } catch (error) {
+      console.log(`error in connecting DB`)
       console.error(error.message);
       process.exit(1);
     }

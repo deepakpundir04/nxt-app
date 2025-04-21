@@ -9,7 +9,7 @@ import cors from "cors";
 import connectDB from "./db.js";
 import userRouter from "./route/user.route.js"
 
-const NODE_PORT = process.env.NODE_PORT;
+const NODE_PORT = process.env.NODE_PORT || 4000;
 
 const app = express();
 app.use(cors());
