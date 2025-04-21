@@ -16,9 +16,10 @@ App hosted on Docker with fronted on Nextjs backend on express and localhosted m
   ```
  # provide mongoDb username, password and DB name in env inside express folder, variable name attached below
   ```
-  MONGO_USERNAME=
-  MONGO_PASSWORD=
+  NODE_PORT=
   MONGO_DB=
+  MONGO_USERNAME=
+  MONGO_PASS=
   ```
 # Run docker compose up command in root folder 
 app will be accessible at localhost:8080 **OR** 0.0.0.0:8080 **OR** http://192.168.99.100:8080/ 
